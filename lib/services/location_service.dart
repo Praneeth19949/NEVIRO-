@@ -38,7 +38,11 @@ class LocationService {
       ),
     );
 
-    final places = await placemarkFromCoordinates(position.latitude, position.longitude);
+    final geocoding = Geocoding();
+    final places = await geocoding.placemarkFromCoordinates(
+      position.latitude,
+      position.longitude,
+    );
     final place = places.isEmpty ? null : places.first;
     final suburb = (place?.subLocality?.trim().isNotEmpty ?? false)
         ? place!.subLocality!.trim()
